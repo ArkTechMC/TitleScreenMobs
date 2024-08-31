@@ -100,22 +100,13 @@ public class DummyClientPlayNetworkHandler extends ClientPlayNetworkHandler {
     };
 
     private DummyClientPlayNetworkHandler() {
-        /*super(
-                MinecraftClient.getInstance(),
-                null,
-                new ClientConnection(NetworkSide.CLIENTBOUND),
-                MinecraftClient.getInstance().getCurrentServerEntry(),
-                MinecraftClient.getInstance().getSession().getProfile(),
-                MinecraftClient.getInstance().getTelemetryManager().createWorldSession(true, Duration.of(0, ChronoUnit.SECONDS), null)
-        );
-        *//*?} else {*/
         super(
                 MinecraftClient.getInstance(),
                 null,
                 new ClientConnection(NetworkSide.CLIENTBOUND),
                 MinecraftClient.getInstance().getCurrentServerEntry(),
                 MinecraftClient.getInstance().getSession().getProfile(),
-                MinecraftClient.getInstance().getTelemetryManager().createWorldSession(true, Duration.of(0, ChronoUnit.SECONDS))
+                MinecraftClient.getInstance().getTelemetryManager().createWorldSession(true, Duration.of(0, ChronoUnit.SECONDS), null)
         );
     }
 
