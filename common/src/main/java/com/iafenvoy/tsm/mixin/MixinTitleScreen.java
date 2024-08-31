@@ -1,7 +1,7 @@
 package com.iafenvoy.tsm.mixin;
 
-import com.iafenvoy.tsm.DummyClientPlayerEntity;
 import com.iafenvoy.tsm.RenderHelper;
+import com.iafenvoy.tsm.cursed.DummyClientPlayerEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
@@ -27,7 +27,7 @@ public class MixinTitleScreen {
             ClientPlayerEntity player = DummyClientPlayerEntity.getInstance();
             int height = sc.height / 4 + 132;
             int playerX = sc.width / 2 - 160;
-            InventoryScreen.drawEntity(playerX, height, 30, -mouseX + playerX, -mouseY + height - 30, player);
+            InventoryScreen.drawEntity(matrices, playerX, height, 30, -mouseX + playerX, -mouseY + height - 30, player);
             int entityX = sc.width / 2 + 160;
             LivingEntity livingEntity = RenderHelper.livingEntity;
             if (livingEntity != null) {
@@ -39,5 +39,4 @@ public class MixinTitleScreen {
             }
         }
     }
-
 }
