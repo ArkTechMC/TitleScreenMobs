@@ -1,0 +1,29 @@
+modLoader = "javafml"
+loaderVersion = "[43,)"
+#issueTrackerURL = ""
+license = "Apache 2.0"
+
+[[mods]]
+modId = "title_screen_mobs"
+version = "${version}"
+displayName = "Title Screen Mobs"
+authors = "IAFEnvoy"
+description = '''
+Add mobs to title screen
+'''
+logoFile = "logo.jpg"
+
+[[dependencies.title_screen_mobs]]
+modId = "forge"
+mandatory = true
+versionRange = "[43,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.title_screen_mobs]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19.2,1.20)"
+ordering = "NONE"
+side = "BOTH"
+
