@@ -11,4 +11,4 @@ rootProject.name = 'title_screen_mobs'
 
 include 'common'
 include 'fabric'
-include 'forge'
+include 'neoforge'

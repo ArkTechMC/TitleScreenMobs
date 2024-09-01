@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(TitleScreen.class)
 public class MixinTitleScreen {
@@ -27,7 +28,7 @@ public class MixinTitleScreen {
             ClientPlayerEntity player = DummyClientPlayerEntity.getInstance();
             int height = sc.height / 4 + 132;
             int playerX = sc.width / 2 - 160;
-            InventoryScreen.drawEntity(context, playerX, height, 30, -mouseX + playerX, -mouseY + height - 30, player);
+            InventoryScreen.drawEntity(context, playerX - 25, height - 70, playerX + 25, height, 30, 0, mouseX, mouseY, player);
             int entityX = sc.width / 2 + 160;
             LivingEntity livingEntity = RenderHelper.livingEntity;
             if (livingEntity != null) {
@@ -35,8 +36,20 @@ public class MixinTitleScreen {
                     RenderHelper.renderEntity(context.getMatrices(), entityX, height, 30, -mouseX + entityX, -mouseY + height - 30, livingEntity);
                 } catch (Exception e) {
                     RenderHelper.livingEntity = null;
+                    RenderHelper.foxRotate = false;
                 }
             }
+        }
+    }
+
+    @Inject(method = "mouseClicked", at = @At("RETURN"))
+    private void handleFoxClick(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
+        TitleScreen sc = (TitleScreen) (Object) this;
+        if (MinecraftClient.getInstance() != null) {
+            int height = sc.height / 4 + 132;
+            int entityX = sc.width / 2 + 160;
+            if (mouseX >= entityX - 10 && mouseY >= height - 20 && mouseX <= entityX + 10 && mouseY <= height)
+                RenderHelper.foxRotate = true;
         }
     }
 }

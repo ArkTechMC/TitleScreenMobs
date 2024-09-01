@@ -4,7 +4,9 @@ import com.iafenvoy.tsm.TitleScreenMobs;
 import com.mojang.serialization.Lifecycle;
 import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientConnectionState;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
+import net.minecraft.client.network.ServerInfo;
 import net.minecraft.entity.damage.DamageScaling;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.network.ClientConnection;
@@ -12,6 +14,8 @@ import net.minecraft.network.NetworkSide;
 import net.minecraft.registry.*;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.resource.featuretoggle.FeatureFlags;
+import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.biome.Biome;
@@ -102,11 +106,16 @@ public class DummyClientPlayNetworkHandler extends ClientPlayNetworkHandler {
     private DummyClientPlayNetworkHandler() {
         super(
                 MinecraftClient.getInstance(),
-                null,
                 new ClientConnection(NetworkSide.CLIENTBOUND),
-                MinecraftClient.getInstance().getCurrentServerEntry(),
-                MinecraftClient.getInstance().getSession().getProfile(),
-                MinecraftClient.getInstance().getTelemetryManager().createWorldSession(true, Duration.of(0, ChronoUnit.SECONDS), null)
+                new ClientConnectionState(
+                        MinecraftClient.getInstance().getGameProfile(),
+                        MinecraftClient.getInstance().getTelemetryManager().createWorldSession(true, Duration.ZERO, null),
+                        cursedRegistryManager.toImmutable(),
+                        FeatureSet.of(FeatureFlags.VANILLA),
+                        "",
+                        new ServerInfo("", "", ServerInfo.ServerType.OTHER),
+                        null
+                )
         );
     }
 

@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[43,)"
+loaderVersion = "[2,)"
 #issueTrackerURL = ""
 license = "Apache 2.0"
 
@@ -14,16 +14,18 @@ Add mobs to title screen
 logoFile = "logo.jpg"
 
 [[dependencies.title_screen_mobs]]
-modId = "forge"
-mandatory = true
-versionRange = "[43,)"
+modId = "neoforge"
+type = "required"
+versionRange = "[20.4,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.title_screen_mobs]]
 modId = "minecraft"
-mandatory = true
-versionRange = "[1.20,1.21)"
+type = "required"
+versionRange = "[1.20.2,1.21)"
 ordering = "NONE"
 side = "BOTH"
 
+[[mixins]]
+config = "title_screen_mobs.mixins.json"
