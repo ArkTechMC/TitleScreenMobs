@@ -52,7 +52,7 @@ public record CursedRegistryEntry<T>(T value, RegistryKey<? extends Registry<T>>
 
     @Override
     public Optional<RegistryKey<T>> getKey() {
-        return Optional.of(RegistryKey.of(key, new Identifier(TitleScreenMobs.MOD_ID, "dummy")));
+        return Optional.of(RegistryKey.of(key, Identifier.of(TitleScreenMobs.MOD_ID, "dummy")));
     }
 
     @Override

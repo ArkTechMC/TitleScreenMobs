@@ -28,7 +28,7 @@ public class DummyClientWorld extends ClientWorld {
         super(
                 DummyClientPlayNetworkHandler.getInstance(),
                 new Properties(Difficulty.EASY, false, true),
-                RegistryKey.of(RegistryKeys.WORLD, new Identifier(TitleScreenMobs.MOD_ID, "dummy")),
+                RegistryKey.of(RegistryKeys.WORLD, Identifier.of(TitleScreenMobs.MOD_ID, "dummy")),
                 new CursedRegistryEntry<>(DummyDimensionType.getInstance(), RegistryKeys.DIMENSION_TYPE),
                 0,
                 0,

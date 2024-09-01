@@ -26,7 +26,7 @@ public class RenderHelper {
     private static final List<? extends EntityType<?>> ALLOW_ENTITIES;
 
     static {
-        List<? extends EntityType<?>> collect = TsmConfig.getInstance().whitelist.stream().map(Identifier::new).map(Registries.ENTITY_TYPE::get).toList();
+        List<? extends EntityType<?>> collect = TsmConfig.getInstance().whitelist.stream().map(Identifier::tryParse).map(Registries.ENTITY_TYPE::get).toList();
         if (collect.isEmpty())
             collect = Registries.ENTITY_TYPE.stream().filter((e) -> !TsmConfig.getInstance().blacklist.contains(Registries.ENTITY_TYPE.getId(e).toString())).toList();
         ALLOW_ENTITIES = collect;

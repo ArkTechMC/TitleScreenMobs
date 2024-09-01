@@ -35,7 +35,7 @@ public class DummyClientPlayNetworkHandler extends ClientPlayNetworkHandler {
     public static final Registry<DimensionType> CURSED_DIMENSION_TYPE_REGISTRY = new SimpleRegistry<>(RegistryKeys.DIMENSION_TYPE, Lifecycle.stable());
 
     static {
-        Registry.register(CURSED_DIMENSION_TYPE_REGISTRY, new Identifier(TitleScreenMobs.MOD_ID, "dummy"), new DimensionType(
+        Registry.register(CURSED_DIMENSION_TYPE_REGISTRY, Identifier.of(TitleScreenMobs.MOD_ID, "dummy"), new DimensionType(
                 OptionalLong.of(6000L),
                 true,
                 false,
@@ -76,7 +76,7 @@ public class DummyClientPlayNetworkHandler extends ClientPlayNetworkHandler {
     private static final Registry<BannerPattern> cursedBannerRegistry = new SimpleDefaultedRegistry<>("dummy", RegistryKeys.BANNER_PATTERN, Lifecycle.stable(), true);
 
     private static final DynamicRegistryManager.Immutable cursedRegistryManager = new DynamicRegistryManager.Immutable() {
-        private final CursedRegistry<DamageType> damageTypes = new CursedRegistry<>(RegistryKeys.DAMAGE_TYPE, new Identifier("fake_damage"),
+        private final CursedRegistry<DamageType> damageTypes = new CursedRegistry<>(RegistryKeys.DAMAGE_TYPE, Identifier.of("fake_damage"),
                 new DamageType("", DamageScaling.NEVER, 0));
 
         @SuppressWarnings({"unchecked", "rawtypes"})
@@ -119,7 +119,9 @@ public class DummyClientPlayNetworkHandler extends ClientPlayNetworkHandler {
                         null,
                         Map.of(),
                         new ChatHud.ChatState(List.of(), List.of(), List.of()),
-                        false
+                        false,
+                        Map.of(),
+                        net.minecraft.server.ServerLinks.EMPTY
                 )
         );
     }

@@ -3,11 +3,10 @@ package com.iafenvoy.tsm.cursed;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.PlayerListEntry;
-import net.minecraft.client.render.entity.PlayerModelPart;
 import net.minecraft.client.util.DefaultSkinHelper;
 import net.minecraft.client.util.SkinTextures;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerModelPart;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
@@ -19,8 +18,6 @@ import java.util.function.Function;
 public class DummyClientPlayerEntity extends ClientPlayerEntity {
     private static DummyClientPlayerEntity instance;
     private SkinTextures skinTextures = null;
-    private final PlayerEntity player = null;
-    private final Text name = null;
     public Function<EquipmentSlot, ItemStack> equippedStackSupplier = slot -> ItemStack.EMPTY;
 
     public static DummyClientPlayerEntity getInstance() {
@@ -31,9 +28,7 @@ public class DummyClientPlayerEntity extends ClientPlayerEntity {
     private DummyClientPlayerEntity() {
         super(MinecraftClient.getInstance(), DummyClientWorld.getInstance(), DummyClientPlayNetworkHandler.getInstance(), null, null, false, false);
         setUuid(UUID.randomUUID());
-        MinecraftClient.getInstance().getSkinProvider().fetchSkinTextures(getGameProfile()).thenAccept((textures) -> {
-            skinTextures = textures;
-        });
+        MinecraftClient.getInstance().getSkinProvider().fetchSkinTextures(getGameProfile()).thenAccept((textures) -> skinTextures = textures);
     }
 
     @Override
