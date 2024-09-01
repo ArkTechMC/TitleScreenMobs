@@ -4,6 +4,7 @@ import com.iafenvoy.tsm.TitleScreenMobs;
 import com.mojang.serialization.Lifecycle;
 import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.network.ClientConnectionState;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ServerInfo;
@@ -23,7 +24,8 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.dimension.DimensionTypes;
 
 import java.time.Duration;
-import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalLong;
 import java.util.stream.Stream;
@@ -114,7 +116,10 @@ public class DummyClientPlayNetworkHandler extends ClientPlayNetworkHandler {
                         FeatureSet.of(FeatureFlags.VANILLA),
                         "",
                         new ServerInfo("", "", ServerInfo.ServerType.OTHER),
-                        null
+                        null,
+                        Map.of(),
+                        new ChatHud.ChatState(List.of(), List.of(), List.of()),
+                        false
                 )
         );
     }

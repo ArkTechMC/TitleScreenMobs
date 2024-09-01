@@ -21,7 +21,6 @@ import java.util.stream.Stream;
 @SuppressWarnings("deprecation")
 public record CursedRegistry<T>(RegistryKey<? extends Registry<T>> registryKey, Identifier defaultId,
                                 T defaultValue) implements Registry<T>, RegistryEntryOwner<T> {
-
     @Override
     public RegistryKey<? extends Registry<T>> getKey() {
         return registryKey;
@@ -66,20 +65,14 @@ public record CursedRegistry<T>(RegistryKey<? extends Registry<T>> registryKey, 
         return defaultValue;
     }
 
-    /*? if >=1.20.5 {*/
-//    @Override
-//    public Optional<net.minecraft.registry.entry.RegistryEntryInfo> getEntryInfo(RegistryKey<T> key) {
-//        return Optional.empty();
-//    }
-
-    //    @Override
-//    public Optional<RegistryEntry.Reference<T>> getEntry(Identifier id) {
-//        return Optional.empty();
-//    }
-    /*?} else {*/
     @Override
-    public Lifecycle getEntryLifecycle(T entry) {
-        return Lifecycle.experimental();
+    public Optional<net.minecraft.registry.entry.RegistryEntryInfo> getEntryInfo(RegistryKey<T> key) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<RegistryEntry.Reference<T>> getEntry(Identifier id) {
+        return Optional.empty();
     }
 
 
@@ -177,12 +170,10 @@ public record CursedRegistry<T>(RegistryKey<? extends Registry<T>> registryKey, 
 
     @Override
     public void clearTags() {
-
     }
 
     @Override
     public void populateTags(Map<TagKey<T>, List<RegistryEntry<T>>> tagEntries) {
-
     }
 
     @Override
@@ -192,7 +183,7 @@ public record CursedRegistry<T>(RegistryKey<? extends Registry<T>> registryKey, 
 
     @Override
     public RegistryWrapper.Impl<T> getReadOnlyWrapper() {
-        return new RegistryWrapper.Impl<T>() {
+        return new RegistryWrapper.Impl<>() {
             @Override
             public RegistryKey<? extends Registry<? extends T>> getRegistryKey() {
                 return CursedRegistry.this.registryKey;
@@ -228,7 +219,7 @@ public record CursedRegistry<T>(RegistryKey<? extends Registry<T>> registryKey, 
     @NotNull
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
+        return new Iterator<>() {
             @Override
             public boolean hasNext() {
                 return false;

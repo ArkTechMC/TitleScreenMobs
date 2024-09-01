@@ -64,18 +64,11 @@ public class DummyClientPlayerEntity extends ClientPlayerEntity {
 
     @Override
     public ItemStack getEquippedStack(EquipmentSlot slot) {
-        if (player != null) {
-            return player.getEquippedStack(slot);
-        }
         return equippedStackSupplier.apply(slot);
     }
 
     @Override
     public Text getName() {
-        if (name == null) {
-            return super.getName();
-        } else {
-            return name;
-        }
+        return super.getName();
     }
 }
