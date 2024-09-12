@@ -14,6 +14,12 @@
   "icon": "logo.jpg",
   "environment": "client",
   "entrypoints": {
+    "client": [
+      "com.iafenvoy.tsm.fabric.TitleScreenMobsFabric"
+    ],
+    "modmenu": [
+      "com.iafenvoy.tsm.fabric.ModMenu"
+    ]
   },
   "mixins": [
     "title_screen_mobs.mixins.json"

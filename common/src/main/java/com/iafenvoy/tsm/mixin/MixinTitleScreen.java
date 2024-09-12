@@ -1,6 +1,7 @@
 package com.iafenvoy.tsm.mixin;
 
 import com.iafenvoy.tsm.RenderHelper;
+import com.iafenvoy.tsm.config.TsmConfig;
 import com.iafenvoy.tsm.cursed.DummyClientPlayerEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -23,16 +24,18 @@ public class MixinTitleScreen {
     @Inject(method = "render", at = @At("RETURN"))
     private void mobsMainMenu_render(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
         TitleScreen sc = (TitleScreen) (Object) this;
+        TsmConfig config = TsmConfig.getInstance();
         if (MinecraftClient.getInstance() != null) {
             ClientPlayerEntity player = DummyClientPlayerEntity.getInstance();
             int height = sc.height / 4 + 132;
             int playerX = sc.width / 2 - 160;
-            InventoryScreen.drawEntity(context, playerX, height, 30, -mouseX + playerX, -mouseY + height - 30, player);
+            if (config.left.visible)
+                InventoryScreen.drawEntity(context, playerX + config.left.x, height + config.left.y, (int) (30 * config.left.scale), -mouseX + playerX, -mouseY + height - 30, player);
             int entityX = sc.width / 2 + 160;
             LivingEntity livingEntity = RenderHelper.livingEntity;
-            if (livingEntity != null) {
+            if (livingEntity != null && config.right.visible) {
                 try {
-                    RenderHelper.renderEntity(context.getMatrices(), entityX, height, 30, -mouseX + entityX, -mouseY + height - 30, livingEntity);
+                    RenderHelper.renderEntity(context.getMatrices(), entityX + config.right.x, height + config.right.y, 30, -mouseX + entityX, -mouseY + height - 30, livingEntity, config.right.scale);
                 } catch (Exception e) {
                     RenderHelper.livingEntity = null;
                 }
