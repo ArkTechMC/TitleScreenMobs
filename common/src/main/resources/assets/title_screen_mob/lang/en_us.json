@@ -1,0 +1,15 @@
+{
+  "text.autoconfig.title-screen-mob.title": "Title Screen Mob Config",
+  "text.autoconfig.title-screen-mob.option.whitelist": "Mob Whitelist",
+  "text.autoconfig.title-screen-mob.option.blacklist": "Mob Blacklist",
+  "text.autoconfig.title-screen-mob.option.left": "Left Player",
+  "text.autoconfig.title-screen-mob.option.left.visible": "Visible",
+  "text.autoconfig.title-screen-mob.option.left.x": "X Offset",
+  "text.autoconfig.title-screen-mob.option.left.y": "Y Offset",
+  "text.autoconfig.title-screen-mob.option.left.scale": "Scale",
+  "text.autoconfig.title-screen-mob.option.right": "Right Mob",
+  "text.autoconfig.title-screen-mob.option.right.visible": "Visible",
+  "text.autoconfig.title-screen-mob.option.right.x": "X Offset",
+  "text.autoconfig.title-screen-mob.option.right.y": "Y Offset",
+  "text.autoconfig.title-screen-mob.option.right.scale": "Scale"
+}

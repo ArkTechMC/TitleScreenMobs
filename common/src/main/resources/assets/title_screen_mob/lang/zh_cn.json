@@ -1,0 +1,15 @@
+{
+  "text.autoconfig.title-screen-mob.title": "主界面生物渲染配置",
+  "text.autoconfig.title-screen-mob.option.whitelist": "生物白名单",
+  "text.autoconfig.title-screen-mob.option.blacklist": "生物黑名单",
+  "text.autoconfig.title-screen-mob.option.left": "左侧玩家设置",
+  "text.autoconfig.title-screen-mob.option.left.visible": "显示",
+  "text.autoconfig.title-screen-mob.option.left.x": "X位移",
+  "text.autoconfig.title-screen-mob.option.left.y": "Y位移",
+  "text.autoconfig.title-screen-mob.option.left.scale": "缩放",
+  "text.autoconfig.title-screen-mob.option.right": "右侧生物设置",
+  "text.autoconfig.title-screen-mob.option.right.visible": "显示",
+  "text.autoconfig.title-screen-mob.option.right.x": "X位移",
+  "text.autoconfig.title-screen-mob.option.right.y": "Y位移",
+  "text.autoconfig.title-screen-mob.option.right.scale": "缩放"
+}
