@@ -33,14 +33,13 @@ public class RenderHelper {
     }
 
     public static void endClientTick() {
-        if (livingEntity == null) {
+        if (MinecraftClient.getInstance().currentScreen instanceof TitleScreen && livingEntity == null) {
             Entity entity = ALLOW_ENTITIES.get(RANDOM.nextInt(ALLOW_ENTITIES.size())).create(DummyClientWorld.getInstance());
             if (entity instanceof LivingEntity) livingEntity = (LivingEntity) entity;
-        }
-        if (!(MinecraftClient.getInstance().currentScreen instanceof TitleScreen)) foxRotate = false;
+        } else foxRotate = false;
     }
 
-    public static void renderEntity(MatrixStack matrices, int x, int y, int size, float mouseX, float mouseY, LivingEntity entity,float scale) {
+    public static void renderEntity(MatrixStack matrices, int x, int y, int size, float mouseX, float mouseY, LivingEntity entity, float scale) {
         float f = (float) Math.atan(mouseX / 40.0F);
         float g = (float) Math.atan(mouseY / 40.0F);
         matrices.push();
@@ -87,7 +86,7 @@ public class RenderHelper {
             }
             matrices.scale((float) (width / entity.getBoundingBox().getXLength()), (float) (width / entity.getBoundingBox().getXLength()), (float) (width / entity.getBoundingBox().getXLength()));
             matrices.push();
-            matrices.scale(scale,scale,scale);
+            matrices.scale(scale, scale, scale);
             entityRenderDispatcher.render(entity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, matrices, immediate, 15728880);
             matrices.pop();
         });
